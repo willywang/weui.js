@@ -2919,6 +2919,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        $curInput = $startInput;
 	        $err = $picker.find('.picker-error');
 	        $picker.on('click', '.start-input,.end-input', function () {
+	            $startInput.removeClass('focus');
+	            $endInput.removeClass('focus');
+	            (0, _util2.default)(this).addClass('focus');
 	            $curInput = (0, _util2.default)(this);
 	        });
 	    } else {
@@ -3015,11 +3018,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                        result.splice(level + 1);
 	                        if (defaults.periodSelector) {
+	                            if (defaults.fromDate) {
+	                                $startInput.val(defaults.fromDate);
+	                                defaults.fromDate = '';
+	                            }
+	                            if (defaults.toDate) {
+	                                $endInput.val(defaults.toDate);
+	                                defaults.toDate = '';
+	                                return;
+	                            }
+
 	                            $curInput.val(result.map(function (item) {
 	                                return item.value < 10 ? '0' + item.value : '' + item.value;
 	                            }).join('-'));
 	                            if ($startInput.val() && $endInput.val() && $startInput.val() > $endInput.val()) {
-	                                $err.html('开始日期不能大于结束日期');
+	                                $err.show();
+	                                $err.html('开始日期不能大于结束日期!');
+	                            } else {
+	                                $err.hide();
 	                            }
 	                        }
 	                        defaults.onChange(result);
@@ -3051,7 +3067,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }).on('click', '.weui-picker__action', function () {
 	        hide();
 	    }).on('click', '#weui-picker-confirm', function () {
-	        defaults.onConfirm(result);
+	        if (defaults.periodSelector) {
+	            defaults.onConfirm([$startInput.val(), $endInput.val()]);
+	        } else {
+	            defaults.onConfirm(result);
+	        }
 	    });
 
 	    _sington = $picker[0];
@@ -3719,7 +3739,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 29 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask></div> <div class=weui-picker> <div class=weui-picker-period__hd> <div class=\"weui-flex weui-picker-period__title\"> <i data-action=cancel class=\"weui-item weui-picker__action icon-cancel\"></i> <a href=javascript:; class=\"weui-item weui-picker__title\">自定义</a> <a href=javascript:; data-action=select class=\"weui-item weui-picker__action\" id=weui-picker-confirm>确定</a> </div> <div class=weui-picker-period__inputs> <div class=weui-flex> <div class=\"weui-flex__item weui-picker-period__start\"> <input type=text class=start-input readonly=readonly /> </div> <div class=\"weui-flex__item weui-picker-period__from\"> 至 </div> <div class=\"weui-flex__item weui-picker-period__end\" style=text-align:left> <input type=text class=end-input readonly=readonly /> </div> </div> <div class=weui-picker-tips> <p class=picker-error></p> </div> </div> </div> <div class=weui-picker__bd></div> </div> </div> ";
+	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask></div> <div class=weui-picker> <div class=weui-picker-period__hd> <div class=\"weui-flex weui-picker-period__title\"> <i data-action=cancel class=\"weui-item weui-picker__action icon-cancel\"></i> <a href=javascript:; class=\"weui-item weui-picker__title\">自定义</a> <a href=javascript:; data-action=select class=\"weui-item weui-picker__action weui-picker-confirm\" id=weui-picker-confirm>确定</a> </div> <div class=weui-picker-period__inputs> <div class=weui-flex> <div class=\"weui-flex__item weui-picker-period__start\"> <input type=text class=\"start-input focus\" placeholder=开始日期 readonly=readonly /> </div> <div class=\"weui-flex__item weui-picker-period__from\"> 至 </div> <div class=\"weui-flex__item weui-picker-period__end\" style=text-align:left> <input type=text class=end-input placeholder=结束日期 readonly=readonly /> </div> </div> <div class=weui-picker-tips> <p class=picker-error></p> </div> </div> </div> <div class=weui-picker__bd></div> </div> </div> ";
 
 /***/ }),
 /* 30 */

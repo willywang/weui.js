@@ -228,6 +228,9 @@ function picker() {
         $curInput = $startInput;
         $err = $picker.find('.picker-error');
         $picker.on('click', '.start-input,.end-input', function(){
+            $startInput.removeClass('focus');
+            $endInput.removeClass('focus');
+            $(this).addClass('focus');
             $curInput = $(this);
         });
     }else{
@@ -322,11 +325,24 @@ function picker() {
 
                         result.splice(level + 1);
                         if(defaults.periodSelector){
+                            if(defaults.fromDate){
+                                $startInput.val(defaults.fromDate);
+                                defaults.fromDate = '';
+                            }
+                            if(defaults.toDate){
+                                $endInput.val(defaults.toDate);
+                                defaults.toDate = '';
+                                return;
+                            }
+                            
                             $curInput.val(result.map(item=>{
                                 return item.value < 10 ? '0' + item.value : '' + item.value;
                             }).join('-'));
                             if($startInput.val() && $endInput.val() && $startInput.val()>$endInput.val()){
-                                $err.html('开始日期不能大于结束日期');
+                                $err.show();
+                                $err.html('开始日期不能大于结束日期!');
+                            }else{
+                                $err.hide();
                             }
                         }
                         defaults.onChange(result);
@@ -358,7 +374,11 @@ function picker() {
         .on('click', '.weui-mask', function () { hide(); })
         .on('click', '.weui-picker__action', function () { hide(); })
         .on('click', '#weui-picker-confirm', function () {
-            defaults.onConfirm(result);
+            if(defaults.periodSelector){
+                defaults.onConfirm([$startInput.val(), $endInput.val()]);
+            }else{
+                defaults.onConfirm(result);
+            }
         });
 
     _sington = $picker[0];
