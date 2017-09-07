@@ -19,6 +19,7 @@ import cron from './cron';
 import './scroll';
 import * as util from './util';
 import pickerTpl from './picker.html';
+import pickerPeriodTpl from './picker.period.html';
 import groupTpl from './group.html';
 
 function Result(item) {
@@ -214,7 +215,25 @@ function picker() {
     temp[defaults.id] = temp[defaults.id] || [];
     const result = [];
     const lineTemp = temp[defaults.id];
-    const $picker = $($.render(pickerTpl, defaults));
+
+    let $picker;
+    let $startInput;
+    let $endInput;
+    let $curInput;
+    let $err;
+    if(defaults.periodSelector){
+        $picker = $($.render(pickerPeriodTpl, defaults));
+        $startInput = $picker.find('.start-input');
+        $endInput = $picker.find('.end-input');
+        $curInput = $startInput;
+        $err = $picker.find('.picker-error');
+        $picker.on('click', '.start-input,.end-input', function(){
+            $curInput = $(this);
+        });
+    }else{
+        $picker = $($.render(pickerTpl, defaults));
+    }
+
     let depth = options.depth || (isMulti ? items.length : util.depthOf(items[0])), groups = '';
 
     // 显示与隐藏的方法
@@ -302,7 +321,15 @@ function picker() {
                         });
 
                         result.splice(level + 1);
-
+                        if(defaults.periodSelector){
+                            $curInput.val(result.map(item=>{
+                                return item.value < 10 ? '0' + item.value : '' + item.value;
+                            }).join('-'));
+                            if($startInput.val() && $endInput.val() && $startInput.val()>$endInput.val()){
+                                $err.html('开始日期不能大于结束日期');
+                            }
+                        }
+                        console.log('xxxxx', result);
                         defaults.onChange(result);
                     }
                 }
@@ -416,7 +443,8 @@ function datePicker(options) {
         onConfirm: $.noop,
         start: 2000,
         end: 2030,
-        cron: '* * *'
+        cron: '* * *',
+        periodSelector: true
     }, options);
 
     // 兼容原来的 start、end 传 Number 的用法

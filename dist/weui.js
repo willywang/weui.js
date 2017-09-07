@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -111,11 +111,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _picker = __webpack_require__(24);
 
-	var _gallery = __webpack_require__(30);
+	var _gallery = __webpack_require__(31);
 
 	var _gallery2 = _interopRequireDefault(_gallery);
 
-	var _slider = __webpack_require__(32);
+	var _slider = __webpack_require__(33);
 
 	var _slider2 = _interopRequireDefault(_slider);
 
@@ -156,9 +156,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -286,9 +286,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = dialog;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -546,24 +546,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @returns {*}
 	     */
 	    attr: function attr() {
-	        var _arguments2 = arguments,
-	            _this3 = this;
+	        var _arguments2 = arguments;
 
 	        if (_typeof(arguments[0]) == 'object') {
-	            var _ret = function () {
-	                var attrsObj = _arguments2[0];
-	                var that = _this3;
-	                Object.keys(attrsObj).forEach(function (attr) {
-	                    that.forEach(function ($element) {
-	                        $element.setAttribute(attr, attrsObj[attr]);
-	                    });
+	            var attrsObj = arguments[0];
+	            var that = this;
+	            Object.keys(attrsObj).forEach(function (attr) {
+	                that.forEach(function ($element) {
+	                    $element.setAttribute(attr, attrsObj[attr]);
 	                });
-	                return {
-	                    v: _this3
-	                };
-	            }();
-
-	            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	            });
+	            return this;
 	        }
 
 	        if (typeof arguments[0] == 'string' && arguments.length < 2) {
@@ -652,9 +645,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = _balajs2.default;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// element-closest | CC0-1.0 | github.com/jonathantneal/closest
 
@@ -691,12 +684,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(window.Element.prototype);
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
+
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
 
 	'use strict';
 	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -717,7 +717,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			// Detect buggy property enumeration order in older V8 versions.
 
 			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
 			test1[5] = 'de';
 			if (Object.getOwnPropertyNames(test1)[0] === '5') {
 				return false;
@@ -746,7 +746,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 
 			return true;
-		} catch (e) {
+		} catch (err) {
 			// We don't expect any of the above to throw, but better to be safe.
 			return false;
 		}
@@ -766,8 +766,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			}
 
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
 				for (var i = 0; i < symbols.length; i++) {
 					if (propIsEnumerable.call(from, symbols[i])) {
 						to[symbols[i]] = from[symbols[i]];
@@ -780,9 +780,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, $) {
 		$ = (function(document, s_addEventListener, s_querySelectorAll) {
@@ -836,15 +836,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(this);
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<%=className%>\"> <div class=weui-mask></div> <div class=\"weui-dialog <% if(isAndroid){ %> weui-skin_android <% } %>\"> <% if(title){ %> <div class=weui-dialog__hd><strong class=weui-dialog__title><%=title%></strong></div> <% } %> <div class=weui-dialog__bd><%=content%></div> <div class=weui-dialog__ft> <% for(var i = 0; i < buttons.length; i++){ %> <a href=javascript:; class=\"weui-dialog__btn weui-dialog__btn_<%=buttons[i]['type']%>\"><%=buttons[i]['label']%></a> <% } %> </div> </div> </div> ";
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -938,9 +938,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = alert;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1039,9 +1039,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = confirm;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1140,15 +1140,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = toast;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask_transparent></div> <div class=weui-toast> <i class=\"weui-icon_toast weui-icon-success-no-circle\"></i> <p class=weui-toast__content><%=content%></p> </div> </div> ";
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1240,15 +1240,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = loading;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"weui-loading_toast <%= className %>\"> <div class=weui-mask_transparent></div> <div class=weui-toast> <i class=\"weui-loading weui-icon_toast\"></i> <p class=weui-toast__content><%=content%></p> </div> </div> ";
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1385,15 +1385,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = actionSheet;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<% if(isAndroid){ %>weui-skin_android <% } %><%= className %>\"> <div class=weui-mask></div> <div class=weui-actionsheet> <div class=weui-actionsheet__menu> <% for(var i = 0; i < menus.length; i++){ %> <div class=weui-actionsheet__cell><%= menus[i].label %></div> <% } %> </div> <div class=weui-actionsheet__action> <% for(var j = 0; j < actions.length; j++){ %> <div class=weui-actionsheet__cell><%= actions[j].label %></div> <% } %> </div> </div> </div> ";
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1505,15 +1505,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = topTips;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"weui-toptips weui-toptips_warn <%= className %>\" style=display:block><%= content %></div> ";
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1607,9 +1607,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = searchBar;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -1710,31 +1710,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = tab;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /*
-	                                                                                                                                                                                                                                                                              * Tencent is pleased to support the open source community by making WeUI.js available.
-	                                                                                                                                                                                                                                                                              *
-	                                                                                                                                                                                                                                                                              * Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-	                                                                                                                                                                                                                                                                              *
-	                                                                                                                                                                                                                                                                              * Licensed under the MIT License (the "License"); you may not use this file except in compliance
-	                                                                                                                                                                                                                                                                              * with the License. You may obtain a copy of the License at
-	                                                                                                                                                                                                                                                                              *
-	                                                                                                                                                                                                                                                                              *       http://opensource.org/licenses/MIT
-	                                                                                                                                                                                                                                                                              *
-	                                                                                                                                                                                                                                                                              * Unless required by applicable law or agreed to in writing, software distributed under the License is
-	                                                                                                                                                                                                                                                                              * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-	                                                                                                                                                                                                                                                                              * either express or implied. See the License for the specific language governing permissions and
-	                                                                                                                                                                                                                                                                              * limitations under the License.
-	                                                                                                                                                                                                                                                                              */
 
 	var _util = __webpack_require__(2);
 
@@ -1745,6 +1729,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _topTips2 = _interopRequireDefault(_topTips);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+	* Tencent is pleased to support the open source community by making WeUI.js available.
+	*
+	* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
+	*
+	* Licensed under the MIT License (the "License"); you may not use this file except in compliance
+	* with the License. You may obtain a copy of the License at
+	*
+	*       http://opensource.org/licenses/MIT
+	*
+	* Unless required by applicable law or agreed to in writing, software distributed under the License is
+	* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+	* either express or implied. See the License for the specific language governing permissions and
+	* limitations under the License.
+	*/
 
 	function _findCellParent(ele) {
 	    if (!ele || !ele.classList) return null;
@@ -1766,45 +1766,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return 'empty';
 	        } else if (input.type == 'checkbox') {
 	            if (reg) {
-	                var _ret = function () {
-	                    var checkboxInputs = $form.find('input[type="checkbox"][name="' + input.name + '"]');
-	                    var regs = reg.replace(/[{\s}]/g, '').split(',');
-	                    var count = 0;
+	                var checkboxInputs = $form.find('input[type="checkbox"][name="' + input.name + '"]');
+	                var regs = reg.replace(/[{\s}]/g, '').split(',');
+	                var count = 0;
 
-	                    if (regs.length != 2) {
-	                        throw input.outerHTML + ' regexp is wrong.';
-	                    }
+	                if (regs.length != 2) {
+	                    throw input.outerHTML + ' regexp is wrong.';
+	                }
 
-	                    checkboxInputs.forEach(function (checkboxInput) {
-	                        if (checkboxInput.checked) ++count;
-	                    });
+	                checkboxInputs.forEach(function (checkboxInput) {
+	                    if (checkboxInput.checked) ++count;
+	                });
 
-	                    if (regs[1] === '') {
-	                        // {0,}
-	                        if (count >= parseInt(regs[0])) {
-	                            return {
-	                                v: null
-	                            };
-	                        } else {
-	                            return {
-	                                v: count == 0 ? 'empty' : 'notMatch'
-	                            };
-	                        }
+	                if (regs[1] === '') {
+	                    // {0,}
+	                    if (count >= parseInt(regs[0])) {
+	                        return null;
 	                    } else {
-	                        // {0,2}
-	                        if (parseInt(regs[0]) <= count && count <= parseInt(regs[1])) {
-	                            return {
-	                                v: null
-	                            };
-	                        } else {
-	                            return {
-	                                v: count == 0 ? 'empty' : 'notMatch'
-	                            };
-	                        }
+	                        return count == 0 ? 'empty' : 'notMatch';
 	                    }
-	                }();
-
-	                if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	                } else {
+	                    // {0,2}
+	                    if (parseInt(regs[0]) <= count && count <= parseInt(regs[1])) {
+	                        return null;
+	                    } else {
+	                        return count == 0 ? 'empty' : 'notMatch';
+	                    }
+	                }
 	            } else {
 	                return input.checked ? null : 'empty';
 	            }
@@ -2005,9 +1993,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -2225,82 +2213,70 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    if (options.onBeforeQueued) {
-	        (function () {
-	            var onBeforeQueued = options.onBeforeQueued;
-	            options.onBeforeQueued = function (file, files) {
-	                var ret = onBeforeQueued.call(file, files);
-	                if (ret === false) {
-	                    return false;
-	                }
-	                if (ret === true) {
-	                    return;
-	                }
+	        var onBeforeQueued = options.onBeforeQueued;
+	        options.onBeforeQueued = function (file, files) {
+	            var ret = onBeforeQueued.call(file, files);
+	            if (ret === false) {
+	                return false;
+	            }
+	            if (ret === true) {
+	                return;
+	            }
 
-	                var $item = (0, _util2.default)(_util2.default.render(_item2.default, {
-	                    id: file.id
-	                }));
-	                $uploader.find('.weui-uploader__files').append($item);
-	            };
-	        })();
+	            var $item = (0, _util2.default)(_util2.default.render(_item2.default, {
+	                id: file.id
+	            }));
+	            $uploader.find('.weui-uploader__files').append($item);
+	        };
 	    }
 	    if (options.onQueued) {
-	        (function () {
-	            var onQueued = options.onQueued;
-	            options.onQueued = function (file) {
-	                if (!onQueued.call(file)) {
-	                    var $file = $uploader.find('[data-id="' + file.id + '"]');
-	                    $file.css({
-	                        backgroundImage: 'url("' + (file.base64 || file.url) + '")'
-	                    });
-	                    if (!options.auto) {
-	                        clearFileStatus($uploader, file.id);
-	                    }
-	                }
-	            };
-	        })();
-	    }
-	    if (options.onBeforeSend) {
-	        (function () {
-	            var onBeforeSend = options.onBeforeSend;
-	            options.onBeforeSend = function (file, data, headers) {
-	                var ret = onBeforeSend.call(file, data, headers);
-	                if (ret === false) {
-	                    return false;
-	                }
-	            };
-	        })();
-	    }
-	    if (options.onSuccess) {
-	        (function () {
-	            var onSuccess = options.onSuccess;
-	            options.onSuccess = function (file, ret) {
-	                file.status = 'success';
-	                if (!onSuccess.call(file, ret)) {
+	        var onQueued = options.onQueued;
+	        options.onQueued = function (file) {
+	            if (!onQueued.call(file)) {
+	                var $file = $uploader.find('[data-id="' + file.id + '"]');
+	                $file.css({
+	                    backgroundImage: 'url("' + (file.base64 || file.url) + '")'
+	                });
+	                if (!options.auto) {
 	                    clearFileStatus($uploader, file.id);
 	                }
-	            };
-	        })();
+	            }
+	        };
+	    }
+	    if (options.onBeforeSend) {
+	        var onBeforeSend = options.onBeforeSend;
+	        options.onBeforeSend = function (file, data, headers) {
+	            var ret = onBeforeSend.call(file, data, headers);
+	            if (ret === false) {
+	                return false;
+	            }
+	        };
+	    }
+	    if (options.onSuccess) {
+	        var onSuccess = options.onSuccess;
+	        options.onSuccess = function (file, ret) {
+	            file.status = 'success';
+	            if (!onSuccess.call(file, ret)) {
+	                clearFileStatus($uploader, file.id);
+	            }
+	        };
 	    }
 	    if (options.onProgress) {
-	        (function () {
-	            var onProgress = options.onProgress;
-	            options.onProgress = function (file, percent) {
-	                if (!onProgress.call(file, percent)) {
-	                    findFileCtn($uploader, file.id).html(percent + '%');
-	                }
-	            };
-	        })();
+	        var onProgress = options.onProgress;
+	        options.onProgress = function (file, percent) {
+	            if (!onProgress.call(file, percent)) {
+	                findFileCtn($uploader, file.id).html(percent + '%');
+	            }
+	        };
 	    }
 	    if (options.onError) {
-	        (function () {
-	            var onError = options.onError;
-	            options.onError = function (file, err) {
-	                file.status = 'fail';
-	                if (!onError.call(file, err)) {
-	                    findFileCtn($uploader, file.id).html('<i class="weui-icon-warn"></i>');
-	                }
-	            };
-	        })();
+	        var onError = options.onError;
+	        options.onError = function (file, err) {
+	            file.status = 'fail';
+	            if (!onError.call(file, err)) {
+	                findFileCtn($uploader, file.id).html('<i class="weui-icon-warn"></i>');
+	            }
+	        };
 	    }
 
 	    $uploader.find('input[type="file"]').on('change', function (evt) {
@@ -2338,15 +2314,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = uploader;
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<li class=\"weui-uploader__file weui-uploader__file_status\" data-id=\"<%= id %>\"> <div class=weui-uploader__file-content> <i class=weui-loading style=width:30px;height:30px></i> </div> </li> ";
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -2576,9 +2552,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 23 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -2681,9 +2657,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 24 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -2725,7 +2701,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _picker2 = _interopRequireDefault(_picker);
 
-	var _group = __webpack_require__(29);
+	var _pickerPeriod = __webpack_require__(29);
+
+	var _pickerPeriod2 = _interopRequireDefault(_pickerPeriod);
+
+	var _group = __webpack_require__(30);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -2926,7 +2906,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	    temp[defaults.id] = temp[defaults.id] || [];
 	    var result = [];
 	    var lineTemp = temp[defaults.id];
-	    var $picker = (0, _util2.default)(_util2.default.render(_picker2.default, defaults));
+
+	    var $picker = void 0;
+	    var $startInput = void 0;
+	    var $endInput = void 0;
+	    var $curInput = void 0;
+	    var $err = void 0;
+	    if (defaults.periodSelector) {
+	        $picker = (0, _util2.default)(_util2.default.render(_pickerPeriod2.default, defaults));
+	        $startInput = $picker.find('.start-input');
+	        $endInput = $picker.find('.end-input');
+	        $curInput = $startInput;
+	        $err = $picker.find('.picker-error');
+	        $picker.on('click', '.start-input,.end-input', function () {
+	            $curInput = (0, _util2.default)(this);
+	        });
+	    } else {
+	        $picker = (0, _util2.default)(_util2.default.render(_picker2.default, defaults));
+	    }
+
 	    var depth = options.depth || (isMulti ? items.length : util.depthOf(items[0])),
 	        groups = '';
 
@@ -3016,7 +3014,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        });
 
 	                        result.splice(level + 1);
-
+	                        if (defaults.periodSelector) {
+	                            $curInput.val(result.map(function (item) {
+	                                return item.value < 10 ? '0' + item.value : '' + item.value;
+	                            }).join('-'));
+	                            if ($startInput.val() && $endInput.val() && $startInput.val() > $endInput.val()) {
+	                                $err.html('开始日期不能大于结束日期');
+	                            }
+	                        }
+	                        console.log('xxxxx', result);
 	                        defaults.onChange(result);
 	                    }
 	                }
@@ -3130,7 +3136,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        onConfirm: _util2.default.noop,
 	        start: 2000,
 	        end: 2030,
-	        cron: '* * *'
+	        cron: '* * *',
+	        periodSelector: true
 	    }, options);
 
 	    // 兼容原来的 start、end 传 Number 的用法
@@ -3197,9 +3204,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 25 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -3406,9 +3413,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	module.exports = exports['default'];
 
-/***/ },
+/***/ }),
 /* 26 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -3670,9 +3677,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-/***/ },
+/***/ }),
 /* 27 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 
@@ -3703,21 +3710,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return depth;
 	};
 
-/***/ },
+/***/ }),
 /* 28 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask></div> <div class=weui-picker> <div class=weui-picker__hd> <a href=javascript:; data-action=cancel class=weui-picker__action>取消</a> <a href=javascript:; data-action=select class=weui-picker__action id=weui-picker-confirm>确定</a> </div> <div class=weui-picker__bd></div> </div> </div> ";
 
-/***/ },
+/***/ }),
 /* 29 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
+
+	module.exports = "<div class=\"<%= className %>\"> <div class=weui-mask></div> <div class=weui-picker> <div class=weui-picker-period__hd style=background:#fff> <div class=\"weui-flex weui-picker-period__title\"> <i data-action=cancel class=\"weui-item weui-picker__action icon-cancel\"></i> <a href=javascript:; class=\"weui-item weui-picker__title\">自定义</a> <a href=javascript:; data-action=select class=\"weui-item weui-picker__action\" id=weui-picker-confirm>确定</a> </div> <div class=weui-picker-period__inputs> <div class=weui-flex> <div class=\"weui-flex__item weui-picker-period__start\"> <input type=text class=start-input readonly=readonly /> </div> <div class=\"weui-flex__item weui-picker-period__from\"> 至 </div> <div class=\"weui-flex__item weui-picker-period__end\" style=text-align:left> <input type=text class=end-input readonly=readonly /> </div> </div> <div class=weui-picker-tips> <p class=picker-error></p> </div> </div> </div> <div class=weui-picker__bd></div> </div> </div> ";
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=weui-picker__group> <div class=weui-picker__mask></div> <div class=weui-picker__indicator></div> <div class=weui-picker__content></div> </div>";
 
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -3729,7 +3742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _util2 = _interopRequireDefault(_util);
 
-	var _gallery = __webpack_require__(31);
+	var _gallery = __webpack_require__(32);
 
 	var _gallery2 = _interopRequireDefault(_gallery);
 
@@ -3815,15 +3828,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = gallery;
 	module.exports = exports['default'];
 
-/***/ },
-/* 31 */
-/***/ function(module, exports) {
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
 
 	module.exports = "<div class=\"weui-gallery <%= className %>\"> <span class=weui-gallery__img style=\"background-image:url(<%= url %>)\"></span> <div class=weui-gallery__opr> <a href=javascript: class=weui-gallery__del> <i class=\"weui-icon-delete weui-icon_gallery-delete\"></i> </a> </div> </div> ";
 
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -3974,7 +3987,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = slider;
 	module.exports = exports['default'];
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;

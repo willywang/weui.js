@@ -163,7 +163,8 @@ document.querySelector('#datePickerBtn').addEventListener('click', function () {
         onConfirm: function (result) {
             console.log(result);
         },
-        id: 'datePicker'
+        id: 'datePicker',
+        periodSelector: true
     });
 });
 
