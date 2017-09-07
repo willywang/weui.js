@@ -3022,7 +3022,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                $err.html('开始日期不能大于结束日期');
 	                            }
 	                        }
-	                        console.log('xxxxx', result);
 	                        defaults.onChange(result);
 	                    }
 	                }
